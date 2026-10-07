@@ -9,11 +9,11 @@ from dify_plugin.entities.tool import ToolInvokeMessage
 from tools.acedata_client import AceDataSeedanceClient
 
 
-class SeedanceTaskRetrieveTool(Tool):
+class SeedanceTasksRetrieveBatchTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:
         result = AceDataSeedanceClient(
             self.runtime.credentials.get("acedata_bearer_token", "")
-        ).invoke("seedance_task_retrieve", tool_parameters)
+        ).invoke("seedance_tasks_retrieve_batch", tool_parameters)
         yield self.create_json_message(result)
         for name, value in result.items():
             yield self.create_variable_message(name, value)

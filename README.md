@@ -1,60 +1,58 @@
-# Seedance
+# Seedance for Dify
 
-**Author:** acedatacloud
-
-**Type:** tool provider plugin
-
-**API:** `https://api.acedata.cloud/seedance/videos`
-
-## Tools
-
-| Tool ID | Purpose | Inputs |
-|---|---|---|
-| `seedance_generate_video` | Seedance Generate Video | `prompt`, `model`, `first_frame_url`, `resolution`, `ratio`, `duration`, `generate_audio` |
-| `seedance_task_retrieve` | Seedance Retrieve Task | `task_id`, `wait_seconds` |
-
-Outputs include `status`, `task_id`, `media_urls`, `result`, and the earlier plugin conventions `success`, `trace_id`, `data`. `success` is true only when results are complete; failures raise tool errors.
-
-The credential field is `acedata_bearer_token`; paste the token without the `Bearer ` prefix.
-
-Generate Seedance text-to-video or first-frame image-to-video with Ace Data Cloud. Maintained by Ace Data Cloud. This is a free Dify tool plugin; API use requires your own Ace Data Cloud account and may incur usage charges.
+Use the Ace Data Cloud Seedance APIs in Dify workflows. Maintained by Ace Data Cloud. The plugin is free; API calls require your own authorized account and use the current service pricing.
 
 ## Setup
 
-1. Sign in at [Ace Data Cloud](https://platform.acedata.cloud/console/applications), activate the service and check [current pricing](https://platform.acedata.cloud/models).
-2. Create an API key authorized for this service. A service key is scoped; use a global key only for services your account can access.
-3. Install this plugin from Dify Marketplace **after it is published**. During review, source/package tests do not imply official listing. A development package can use Dify's documented remote-debug workflow in an isolated workspace.
-4. In Dify **Integrations → Tools** (or **Plugins** in older versions), authorize the plugin with the key. Credential validation makes only a read-only task query; it never generates media.
+1. Activate the service at [Ace Data Cloud](https://platform.acedata.cloud/console/applications), check [current pricing](https://platform.acedata.cloud/models), and create an API token with the required service access.
+2. Install from the official Dify Marketplace once the submission is approved and published. During review, use Dify's documented package/debug installation in a test workspace. A GitHub PR does not establish Marketplace availability or default installation.
+3. In Dify's **Plugins / Tools** page, authorize this provider with **Bearer Token** (`acedata_bearer_token`). Do not include credentials in prompts or exported workflows. Credential validation never generates media. Authorization performs a read-only task query.
 
-## Workflow
+## Tools
 
-1. Create **Start → Generate → Output** and select this plugin's generation tool. Fill the required prompt/text, model and options. Disable automatic retries for generation.
-2. Save `task_id` from the result. Status `pending` means accepted, not finished.
-3. Pass the same ID to **Retrieve or wait for task**. Set **Wait up to seconds** to 120–240 for a bounded wait, or 0 for one read. If it still returns `pending`, wait and query the same ID again. Do not resubmit generation.
-4. When `status` is `succeeded`, read `media_urls` for the image/audio/video links. Use **Output** (or Chatflow **Answer**) to return the URLs. Task failures raise a Dify tool error, rather than returning a false success.
+| Tool | API |
+|---|---|
+| `seedance_generate_video` | `POST /seedance/videos` |
+| `seedance_task_retrieve` | `POST /seedance/tasks` |
+| `seedance_tasks_retrieve_batch` | `POST /seedance/tasks` |
 
-Omit the first-frame image URL for text-to-video. Use a public HTTPS first-frame URL for image-to-video. Mini/Fast 2.0 models support up to 720p. This release does not advertise video edit/extend or multimodal reference modes.
+See [CAPABILITIES.md](CAPABILITIES.md) for the current MCP comparison and parameter equivalents. All exposed inputs follow the current published API; model combinations and availability still depend on the service.
 
-This release covers text-to-video and first-frame image-to-video. Task queries return output fields only, excluding stored requests, account IDs and routing metadata. Generation uses asynchronous requests. Each HTTPS request has a 10-second connect and 60-second read timeout; a wait call polls for at most 240 seconds. No automatic paid retries or model fallback is implemented. On a submission timeout, check request history before attempting another submission.
+## Run a workflow
 
-## Billing, network and privacy
+For generation, use **Start → generation tool → task retrieval → Output**. Fill the prompt/text and model, and enter arrays/objects as JSON. Optional values can be left empty. The example requests in [tests/contract-examples.json](https://github.com/AceDataCloud/SeedanceDify/blob/main/tests/contract-examples.json) show valid shapes; example.org URLs are placeholders that must be replaced with your own accessible media.
 
-The plugin connects only to `api.acedata.cloud:443`; it does not download reference URLs or media itself. URLs are passed to the API as inputs or returned for downstream use. Only submit content you are authorized to process.
+A submission can return `status=pending` with `task_id`. Save that ID, then use the retrieval tool with `wait_seconds=0` to read once, or 1–240 for a bounded wait. If still pending, query the same task again. Disable automatic retries on generation nodes. No paid request is automatically retried and no substitute model is selected.
 
-Check [Usage](https://platform.acedata.cloud/console/usages) by key and time after a real call. Charges are in Credits; USD = Credits × your current package price / amount. Dify tool execution counts are not the billing ledger. A completed task must also have usable media. See [PRIVACY.md](PRIVACY.md).
+`status`, `success`, `task_id`, `trace_id`, `media_urls`, `data`, and `result` are available as Dify variables. Only a terminal successful result has `success=true`; intermediate previews remain pending. Batch queries preserve the state of each item. Terminal task failures raise a tool error. Synchronous search, text and management results are returned directly in `data`/`result`. The plugin does not execute model-generated tools.
 
-Python 3.12 and `dify-plugin==0.9.1` are required. Default models and listed options may change with the service; check the catalog before using a different model. Contact support for access errors; reduce concurrency on HTTP 429. Do not put keys into prompts or exported workflows.
+The table maps service operations to Dify tools. Different MCP helper functions may use the same action selector or structured JSON input.
 
-## Source and support
+Task/query calls retry transport failures at most twice. Generation has one attempt and a 10-second connect / 60-second read timeout. After a timeout, inspect [request history](https://platform.acedata.cloud/console/usages) before resubmitting; the accepted task may still be running. Delete/archive operations require `confirm=true`.
 
-- Source repository: https://github.com/AceDataCloud/SeedanceDify
-- Contact: dev@acedata.cloud
+## Branding and privacy
+
+The plugin uses the exact existing system asset recorded in [branding provenance](https://github.com/AceDataCloud/SeedanceDify/blob/main/tests/branding-source.json), for both light and dark icons. No logo was generated or redrawn. Asset SHA256: `6a5b07c1d33d2910eb9fe1c8549874a004d13a0e75d9b30a7cfdc255c586a83d`.
+
+Requests go directly to `https://api.acedata.cloud`. The plugin passes reference URLs to that API and returns media links; it does not fetch arbitrary reference URLs. Dify may fetch/render output links under its own policies. Never submit media you lack permission to process. See [PRIVACY.md](PRIVACY.md).
+
+API charges are recorded in Credits in your Ace Data Cloud account. Check the actual usage ledger; Dify execution counts are not a billing ledger. USD = Credits × your current package price / amount.
+
+## Development and evidence
+
+Python 3.12 is required. Install `requirements.txt`, then run:
+
+```sh
+python -m pytest tests -q
+ruff check .
+ruff format --check .
+dify plugin package .
+```
+
+Source contracts, MCP mappings, brand provenance and offline cases are in `tests/`. Recorded real Dify results state their exact coverage; they do not establish all models/options or Dify Cloud/Marketplace installation. See [tests/README.md](https://github.com/AceDataCloud/SeedanceDify/blob/main/tests/README.md).
+
+- Source: https://github.com/AceDataCloud/SeedanceDify
 - Issues: https://github.com/AceDataCloud/SeedanceDify/issues
-- [Simplified Chinese](readme/README_zh_Hans.md)
+- Contact: dev@acedata.cloud
 - License: MIT
-
-Development: install `requirements.txt`, run `python -m pytest tests -q`, `ruff check .`, and `dify plugin package .`. Test results and limits are recorded in the submission PR; Marketplace publication is separate from local validation.
-
-## Earlier Dify plugin conventions
-
-This repository follows the earlier service-specific icon, tool naming, Bearer Token credential, bilingual metadata and code layout. The tool table above defines this release's scope; it does not restore all historical tools or the private fork's release workflows.
+- [Simplified Chinese](readme/README_zh_Hans.md)

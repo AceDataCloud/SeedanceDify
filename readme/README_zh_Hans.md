@@ -1,49 +1,41 @@
-# Seedance
+# Seedance Dify 插件
 
-**Author:** acedatacloud
+在 Dify 中使用 Ace Data Cloud 的 Seedance API。插件免费，API 需要自己的账号和服务权限，并按当前价格扣费。
 
-**Type:** tool provider plugin
+## 安装与授权
 
-**API:** `https://api.acedata.cloud/seedance/videos`
+1. 在 [Ace Data Cloud](https://platform.acedata.cloud/console/applications) 开通服务并创建 API Token；使用前核对[当前模型与价格](https://platform.acedata.cloud/models)。
+2. 官方审核并上架后，可从 Dify Marketplace 安装。审核期间可以在测试环境使用 Dify 官方的包安装或远程调试流程。PR 已提交不表示市场已发布，也不表示默认预装。
+3. 在 Dify 的插件或工具页填写 Bearer Token（`acedata_bearer_token`）。凭据检查不会生成内容。授权使用只读任务查询。
 
-## 工具
+## 工具与工作流
 
-| 工具 ID | 功能 | 参数 |
-|---|---|---|
-| `seedance_generate_video` | Seedance 生成视频 | `prompt`, `model`, `first_frame_url`, `resolution`, `ratio`, `duration`, `generate_audio` |
-| `seedance_task_retrieve` | Seedance 查询任务 | `task_id`, `wait_seconds` |
+| Tool | API |
+|---|---|
+| `seedance_generate_video` | `POST /seedance/videos` |
+| `seedance_task_retrieve` | `POST /seedance/tasks` |
+| `seedance_tasks_retrieve_batch` | `POST /seedance/tasks` |
 
-输出包含 `status`、`task_id`、`media_urls`、`result`，以及旧插件约定的 `success`、`trace_id`、`data`。`success` 仅在结果完成时为 true；失败会抛出工具错误。
+完整 MCP 对照、参数别名和适用范围见 [CAPABILITIES.md](../CAPABILITIES.md)。复杂参数填写 JSON，示例见 [contract-examples.json](https://github.com/AceDataCloud/SeedanceDify/blob/main/tests/contract-examples.json)；其中 example.org 链接须替换成自己的可访问媒体。
 
-凭据字段为 `acedata_bearer_token`，粘贴 Token 时不需要 `Bearer ` 前缀。
+生成工作流连接 **开始 → 生成工具 → 查询任务 → 输出**。提交返回 `pending` 时，保存 `task_id`，并使用同一 ID 查询。`wait_seconds=0` 查询一次，1–240 表示最多等待相应秒数。仍在运行时继续查询原任务，不重新提交生成。请关闭生成节点的自动重试。
 
-通过 Ace Data Cloud 使用文生视频和首帧图生视频。插件免费安装，API 使用需要自己的账户与额度。
+输出包含 `status`、`success`、`task_id`、`trace_id`、`media_urls`、`data` 和 `result`。只有任务最终完成才返回成功；预览链接不算完成。批量查询分别保留每个任务的状态。同步操作直接返回结果。删除或归档需要设置 `confirm=true`。插件不会执行模型返回的工具调用。
 
-## 配置
+本版补充了当前服务接口的参数和操作；不同 MCP 函数可能合并为操作选项或结构化输入。图片接口固定返回 URL，流式接口使用 Dify 可处理的完整响应及异步任务查询。每个高级操作和模型是否已真实验证，以测试证据记录为准。
 
-1. 登录 [控制台](https://platform.acedata.cloud/console/applications)，开通服务并检查[当前价格](https://platform.acedata.cloud/models)。创建有该服务权限的 API Key。
-2. 官方上架后，从 Dify Marketplace 安装；审核中的源码或插件包不等于官方已收录。开发验证可以在隔离工作区使用官方远程调试。
-3. 在 **Integrations → Tools（集成 → 工具）** 或旧版插件页面填写 Key。验证凭据只查询任务，不生成付费媒体。
-4. 工作流连接**开始 → 生成工具 → 输出**。填写提示词或文本、模型和选项，关闭生成步骤自动重试。
-5. 保存返回的 `task_id`，传给 **Retrieve or wait for task**。等待秒数为 0 时只查询一次，120–240 时进行有限等待。`pending` 表示未完成；继续查询同一 ID，不要重发生成。
-6. `status=succeeded` 后，通过 `media_urls` 获取媒体链接。用输出节点或 Chatflow 回答节点返回链接；任务失败会产生工具错误。
+## Logo、隐私与费用
 
-## 范围与计费
+浅色和深色图标复用系统中已有的官方服务资产，未经重绘；来源和 SHA256 见 [branding-source.json](https://github.com/AceDataCloud/SeedanceDify/blob/main/tests/branding-source.json)。
 
-本版支持文生视频和首帧图生视频及任务查询。编辑图片时填写公开 HTTPS 图片地址；Seedance 本版只支持文本或首帧输入；Fish 本版不含声音克隆；Suno 的时长是目标值，中间预览不视作完成结果。
+插件仅直接连接 `api.acedata.cloud`，把用户选择的文本、参数、参考媒体 URL 和任务 ID 发给 API，并向 Dify 返回结果。只提交已获授权的媒体。音色和自定义模型创建涉及对应的训练或克隆处理，须先核对素材权限和价格。详见 [隐私说明](../PRIVACY.md)。
 
-到[用量页](https://platform.acedata.cloud/console/usages)按 Key 和时间核对实际扣减。Credits 的 USD 换算使用当前套餐价格与额度。异步受理、任务成功、文件可读取及扣费应分别验证。
+使用记录以 Ace Data Cloud 的账单为准，单位为 Credits；USD = Credits × 当前套餐价格 / 额度。生成超时后先检查请求历史，避免重复扣费。插件没有自动付费重试或模型替换。
 
-连接超时 10 秒，读取超时 60 秒，单次任务等待不超过 240 秒。网络不确定时先查请求历史，不盲目重发。本插件不自动重试付费请求或更换模型。
+## 源码与验证
 
-## 隐私与支持
+- 源码：https://github.com/AceDataCloud/SeedanceDify
+- 问题反馈：https://github.com/AceDataCloud/SeedanceDify/issues
+- 联系：dev@acedata.cloud
 
-Key、提示词、歌词/文本及所选参考媒体 URL 通过 HTTPS 发给 `api.acedata.cloud`。插件不下载任意 URL、不执行代码或额外持久化内容，Dify 管理凭据与运行历史。只使用有权处理的素材，详见 [隐私政策](../PRIVACY.md)。
-
-源码：https://github.com/AceDataCloud/SeedanceDify
-
-支持：dev@acedata.cloud
-
-## 与旧 Dify 插件的对应
-
-本仓库沿用旧插件的服务图标、工具命名、Bearer Token 配置、中英文说明和代码组织方式。运行范围以上方工具表为准；这是独立的官方市场投稿，不是旧 19 插件发布链的恢复。
+需要 Python 3.12。运行 `python -m pytest tests -q`、`ruff check .`、`ruff format --check .` 和 `dify plugin package .`。真实 Dify 截图与结果、未覆盖项见 tests 目录；单元测试通过不等于所有模型真实调用通过，市场上架和安装另行验收。
