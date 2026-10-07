@@ -1,0 +1,48 @@
+identity:
+  name: seedance_task
+  author: acedatacloud
+  label:
+    en_US: Retrieve or wait for task
+description:
+  human:
+    en_US: Retrieve or wait for task through Seedance by Ace Data Cloud.
+  llm: Retrieve or wait for task through Seedance by Ace Data Cloud. Generation returns
+    a task ID; use Retrieve or wait for task for the final result.
+parameters:
+- name: task_id
+  label:
+    en_US: Task ID
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: Task ID
+  llm_description: Task ID
+- name: wait_seconds
+  label:
+    en_US: Wait up to seconds
+  type: number
+  required: false
+  form: form
+  human_description:
+    en_US: 0 returns current status; 1–240 polls until completion. Pending results
+      keep the same task ID. Do not resubmit generation.
+  llm_description: 0 returns current status; 1–240 polls until completion. Pending
+    results keep the same task ID. Do not resubmit generation.
+  default: 0
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    task_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    result:
+      type: object
+extra:
+  python:
+    source: tools/task.py

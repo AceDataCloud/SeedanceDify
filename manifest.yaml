@@ -1,0 +1,37 @@
+version: 0.0.1
+type: plugin
+author: acedatacloud
+name: seedance
+label:
+  en_US: Seedance by Ace Data Cloud
+  zh_Hans: Seedance by Ace Data Cloud
+description:
+  en_US: Generate Seedance text-to-video or first-frame image-to-video with Ace Data
+    Cloud.
+icon: icon.png
+icon_dark: icon.png
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+  - provider/seedance.yaml
+meta:
+  version: 0.0.1
+  minimum_dify_version: 1.17.1
+  arch:
+  - amd64
+  - arm64
+  runner:
+    language: python
+    version: '3.12'
+    entrypoint: main
+created_at: '2026-10-07T12:00:00+08:00'
+privacy: PRIVACY.md
+repo: https://github.com/AceDataCloud/SeedanceDify
+contact: dev@acedata.cloud
+network:
+  domains:
+  - api.acedata.cloud

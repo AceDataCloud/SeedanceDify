@@ -1,0 +1,143 @@
+identity:
+  name: seedance_generate
+  author: acedatacloud
+  label:
+    en_US: Generate video
+description:
+  human:
+    en_US: Generate video through Seedance by Ace Data Cloud.
+  llm: Generate video through Seedance by Ace Data Cloud. Generation returns a task
+    ID; use Retrieve or wait for task for the final result.
+parameters:
+- name: prompt
+  label:
+    en_US: Prompt
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: Prompt
+  llm_description: Prompt
+- name: model
+  label:
+    en_US: Model
+  type: select
+  required: false
+  form: form
+  human_description:
+    en_US: Model
+  llm_description: Model
+  default: doubao-seedance-2-0-mini-260615
+  options:
+  - value: doubao-seedance-1-0-pro-fast-251015
+    label:
+      en_US: doubao-seedance-1-0-pro-fast-251015
+  - value: doubao-seedance-1-5-pro-251215
+    label:
+      en_US: doubao-seedance-1-5-pro-251215
+  - value: doubao-seedance-2-0-mini-260615
+    label:
+      en_US: doubao-seedance-2-0-mini-260615
+  - value: doubao-seedance-2-0-fast-260128
+    label:
+      en_US: doubao-seedance-2-0-fast-260128
+  - value: doubao-seedance-2-0-260128
+    label:
+      en_US: doubao-seedance-2-0-260128
+  - value: doubao-seedance-2-5-260628
+    label:
+      en_US: doubao-seedance-2-5-260628
+- name: image_url
+  label:
+    en_US: First-frame image URL
+  type: string
+  required: false
+  form: llm
+  human_description:
+    en_US: Optional public HTTPS image URL; omit for text-to-video.
+  llm_description: Optional public HTTPS image URL; omit for text-to-video.
+- name: resolution
+  label:
+    en_US: Resolution
+  type: select
+  required: false
+  form: form
+  human_description:
+    en_US: Resolution
+  llm_description: Resolution
+  default: 480p
+  options:
+  - value: 480p
+    label:
+      en_US: 480p
+  - value: 720p
+    label:
+      en_US: 720p
+  - value: 1080p
+    label:
+      en_US: 1080p
+- name: ratio
+  label:
+    en_US: Aspect ratio
+  type: select
+  required: false
+  form: form
+  human_description:
+    en_US: Aspect ratio
+  llm_description: Aspect ratio
+  default: '16:9'
+  options:
+  - value: '16:9'
+    label:
+      en_US: '16:9'
+  - value: '4:3'
+    label:
+      en_US: '4:3'
+  - value: '1:1'
+    label:
+      en_US: '1:1'
+  - value: '3:4'
+    label:
+      en_US: '3:4'
+  - value: '9:16'
+    label:
+      en_US: '9:16'
+  - value: '21:9'
+    label:
+      en_US: '21:9'
+- name: duration
+  label:
+    en_US: Duration in seconds
+  type: number
+  required: false
+  form: form
+  human_description:
+    en_US: Duration in seconds
+  llm_description: Duration in seconds
+  default: 4
+- name: generate_audio
+  label:
+    en_US: Generate audio
+  type: boolean
+  required: false
+  form: form
+  human_description:
+    en_US: Generate audio
+  llm_description: Generate audio
+  default: false
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    task_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    result:
+      type: object
+extra:
+  python:
+    source: tools/generate.py
