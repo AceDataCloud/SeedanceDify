@@ -1,0 +1,26 @@
+{
+  "id": "seedance",
+  "title": "Seedance",
+  "origin": {
+    "repository": "AceDataCloud/Dify",
+    "revision": "eaf0e68cd34cfe4cadece7a9ee34a98aac6b961e^",
+    "path": "plugins/seedance/_assets/icon.jpg"
+  },
+  "icons": {
+    "icon.jpg": "1f47be63118c7641940e62259d4ae412fc92940efbaeea8e5ceb73c5eefa17a1"
+  },
+  "tools": [
+    {
+      "operation": "generate",
+      "file": "seedance_generate",
+      "id": "seedance_generate_video",
+      "class": "SeedanceGenerateVideoTool"
+    },
+    {
+      "operation": "task",
+      "file": "seedance_task_retrieve",
+      "id": "seedance_task_retrieve",
+      "class": "SeedanceTaskRetrieveTool"
+    }
+  ]
+}

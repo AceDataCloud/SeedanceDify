@@ -1,0 +1,61 @@
+{
+  "tested_at": "2026-10-07",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local, official remote-debug, console API workflows",
+  "signature_verification": true,
+  "browser_ui_tested": false,
+  "marketplace_install_tested": false,
+  "cases": [
+    {
+      "case": "seedance-generate",
+      "operation": "generate",
+      "workflow_status": "succeeded",
+      "task_status": "pending",
+      "task_id": "14bf1af9-847c-47eb-9c9d-545f5abca2aa",
+      "media_urls": []
+    },
+    {
+      "case": "seedance-image",
+      "operation": "generate",
+      "workflow_status": "succeeded",
+      "task_status": "pending",
+      "task_id": "39f89bcf-73f7-4143-9138-21575175e1cb",
+      "media_urls": []
+    },
+    {
+      "case": "seedance-result3",
+      "operation": "task",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "task_id": "14bf1af9-847c-47eb-9c9d-545f5abca2aa",
+      "media_urls": [
+        "https://platform2.cdn.acedata.cloud/seedance/14bf1af9-847c-47eb-9c9d-545f5abca2aa.mp4"
+      ]
+    },
+    {
+      "case": "seedance-image-result2",
+      "operation": "task",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "task_id": "39f89bcf-73f7-4143-9138-21575175e1cb",
+      "media_urls": [
+        "https://platform2.cdn.acedata.cloud/seedance/39f89bcf-73f7-4143-9138-21575175e1cb.mp4"
+      ]
+    }
+  ],
+  "billing": [
+    {
+      "case": "seedance-generate",
+      "task_id": "14bf1af9-847c-47eb-9c9d-545f5abca2aa",
+      "matched_records": 1,
+      "http_status": 200,
+      "deducted_credits": 1.404
+    },
+    {
+      "case": "seedance-image",
+      "task_id": "39f89bcf-73f7-4143-9138-21575175e1cb",
+      "matched_records": 1,
+      "http_status": 200,
+      "deducted_credits": 1.404
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "repo": "SeedanceDify",
+  "provider_id": "acedatacloud/seedance/seedance",
+  "icon_sha256": "1f47be63118c7641940e62259d4ae412fc92940efbaeea8e5ceb73c5eefa17a1",
+  "tool_ids": [
+    "seedance_generate_video",
+    "seedance_task_retrieve"
+  ],
+  "localized_labels": true,
+  "credential_validation": "passed",
+  "workflow_results": [
+    {
+      "case": "seedance-result3",
+      "task_id": "14bf1af9-847c-47eb-9c9d-545f5abca2aa",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "image_files": 0
+    },
+    {
+      "case": "seedance-image-result2",
+      "task_id": "39f89bcf-73f7-4143-9138-21575175e1cb",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "image_files": 0
+    }
+  ],
+  "new_paid_generations": 0,
+  "environment": "Dify CE 1.17.1 remote-debug + console API workflows",
+  "browser_ui_tested": false,
+  "marketplace_install_tested": false,
+  "prior_paid_case_payloads_unchanged": true
+}
