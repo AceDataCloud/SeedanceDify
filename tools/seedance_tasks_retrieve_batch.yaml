@@ -1,0 +1,46 @@
+identity:
+  name: seedance_tasks_retrieve_batch
+  author: acedatacloud
+  label:
+    en_US: Seedance Retrieve Tasks
+    zh_Hans: Seedance 批量查询任务
+description:
+  human:
+    en_US: Retrieve existing tasks by ID without repeating generation.
+    zh_Hans: 按 ID 批量查询已有任务，不重复提交生成。
+  llm: Query existing task IDs. Each item retains its own terminal or pending status.
+parameters:
+- name: ids
+  type: string
+  required: true
+  form: form
+  label:
+    en_US: Ids
+    zh_Hans: ID 列表
+  human_description:
+    en_US: Use the task ID or IDs returned by earlier submissions. Enter a JSON array
+      or object where applicable.
+    zh_Hans: 使用之前提交返回的任务 ID。 数组或对象请使用 JSON 格式。
+  llm_description: Use the task ID or IDs returned by earlier submissions. Enter a
+    JSON array or object where applicable.
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/seedance_tasks_retrieve_batch.py

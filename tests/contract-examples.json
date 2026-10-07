@@ -1,0 +1,64 @@
+[
+  {
+    "name": "seedance_generate_video-1",
+    "tool": "seedance_generate_video",
+    "inputs": {
+      "prompt": "Test",
+      "first_frame_url": "https://example.org/reference.png",
+      "return_last_frame": true
+    },
+    "method": "POST",
+    "path": "/seedance/videos",
+    "body": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Test"
+        },
+        {
+          "type": "image_url",
+          "role": "first_frame",
+          "image_url": {
+            "url": "https://example.org/reference.png"
+          }
+        }
+      ],
+      "return_last_frame": true
+    }
+  },
+  {
+    "name": "seedance_generate_video-2",
+    "tool": "seedance_generate_video",
+    "inputs": {
+      "content": "[{\"type\":\"text\",\"text\":\"Test\"}]",
+      "frames": 49
+    },
+    "method": "POST",
+    "path": "/seedance/videos",
+    "body": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Test"
+        }
+      ],
+      "frames": 49
+    }
+  },
+  {
+    "name": "seedance_tasks_retrieve_batch-3",
+    "tool": "seedance_tasks_retrieve_batch",
+    "inputs": {
+      "ids": "[\"owned-task\"]"
+    },
+    "method": "POST",
+    "path": "/seedance/tasks",
+    "body": {
+      "action": "retrieve_batch",
+      "ids": [
+        "owned-task"
+      ]
+    },
+    "read_only": true
+  }
+]

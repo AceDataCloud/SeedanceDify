@@ -1,0 +1,65 @@
+{
+  "backend_revision": "fa94598267a82545fb1afed6ee26bafd6cbb9ca7",
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "tools": [
+    {
+      "tool": "seedance_generate_video",
+      "method": "POST",
+      "path": "/seedance/videos",
+      "parameters": [
+        "model",
+        "content",
+        "resolution",
+        "ratio",
+        "duration",
+        "frames",
+        "seed",
+        "camerafixed",
+        "watermark",
+        "generate_audio",
+        "callback_url",
+        "return_last_frame",
+        "execution_expires_after",
+        "omni_reference_task_type",
+        "output_format",
+        "tools",
+        "priority",
+        "safety_identifier",
+        "prompt",
+        "first_frame_url",
+        "last_frame_url",
+        "reference_image_urls",
+        "reference_audio_urls",
+        "reference_video_urls"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/0083b874-4da6-40df-87e3-835b1300c1e8.json"
+    },
+    {
+      "tool": "seedance_task_retrieve",
+      "method": "POST",
+      "path": "/seedance/tasks",
+      "parameters": [
+        "task_id",
+        "wait_seconds"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/c09d6a1b-3cca-4f7c-add3-8c14be60da3c.json"
+    },
+    {
+      "tool": "seedance_tasks_retrieve_batch",
+      "method": "POST",
+      "path": "/seedance/tasks",
+      "parameters": [
+        "ids"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/c09d6a1b-3cca-4f7c-add3-8c14be60da3c.json"
+    }
+  ],
+  "mcp_scope": "seedance",
+  "notes": [
+    "Informational MCP model/action lists are represented by tool dropdowns and README capability tables.",
+    "GPT Image covers image-generation/editing/task capabilities of the broader OpenAI MCP; chat is supplied by ModelProviderDify."
+  ]
+}
