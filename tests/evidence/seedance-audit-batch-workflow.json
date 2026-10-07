@@ -1,0 +1,188 @@
+{
+  "nodes": [
+    {
+      "id": "start",
+      "type": "custom",
+      "data": {
+        "type": "start",
+        "title": "Start",
+        "desc": "",
+        "variables": [],
+        "selected": false
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      },
+      "width": 242,
+      "height": 73,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate",
+      "type": "custom",
+      "data": {
+        "type": "tool",
+        "title": "Seedance",
+        "desc": "",
+        "provider_id": "acedatacloud/seedance/seedance",
+        "provider_name": "acedatacloud/seedance/seedance",
+        "provider_type": "builtin",
+        "tool_name": "seedance_tasks_retrieve_batch",
+        "tool_label": "Seedance Retrieve Tasks",
+        "tool_configurations": {
+          "ids": {
+            "type": "constant",
+            "value": "[\"14bf1af9-847c-47eb-9c9d-545f5abca2aa\"]"
+          }
+        },
+        "tool_parameters": {},
+        "tool_node_version": "2",
+        "plugin_unique_identifier": "acedatacloud/seedance:0.0.1@f6752efb58c3bc2428eadfac55fec72fbd26ca25db51dbaf5c49a7f1ab72a3d1",
+        "retry_config": {
+          "retry_enabled": false,
+          "max_retries": 0,
+          "retry_interval": 1000
+        },
+        "selected": false
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      },
+      "width": 242,
+      "height": 88,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "end",
+      "type": "custom",
+      "data": {
+        "type": "end",
+        "title": "Output",
+        "desc": "",
+        "outputs": [
+          {
+            "variable": "status",
+            "value_selector": [
+              "generate",
+              "status"
+            ]
+          },
+          {
+            "variable": "success",
+            "value_selector": [
+              "generate",
+              "success"
+            ]
+          },
+          {
+            "variable": "task_id",
+            "value_selector": [
+              "generate",
+              "task_id"
+            ]
+          },
+          {
+            "variable": "trace_id",
+            "value_selector": [
+              "generate",
+              "trace_id"
+            ]
+          },
+          {
+            "variable": "media_urls",
+            "value_selector": [
+              "generate",
+              "media_urls"
+            ]
+          },
+          {
+            "variable": "data",
+            "value_selector": [
+              "generate",
+              "data"
+            ]
+          },
+          {
+            "variable": "result",
+            "value_selector": [
+              "generate",
+              "result"
+            ]
+          },
+          {
+            "variable": "files",
+            "value_selector": [
+              "generate",
+              "files"
+            ]
+          }
+        ],
+        "selected": false
+      },
+      "position": {
+        "x": 600,
+        "y": 100
+      },
+      "width": 242,
+      "height": 270,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 600,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-generate",
+      "source": "start",
+      "target": "generate",
+      "sourceHandle": "source",
+      "targetHandle": "target",
+      "type": "custom",
+      "data": {
+        "sourceType": "start",
+        "targetType": "tool",
+        "isInIteration": false,
+        "isInLoop": false
+      },
+      "zIndex": 0
+    },
+    {
+      "id": "generate-end",
+      "source": "generate",
+      "target": "end",
+      "sourceHandle": "source",
+      "targetHandle": "target",
+      "type": "custom",
+      "data": {
+        "sourceType": "tool",
+        "targetType": "end",
+        "isInIteration": false,
+        "isInLoop": false
+      },
+      "zIndex": 0
+    }
+  ],
+  "viewport": {
+    "x": 60,
+    "y": 160,
+    "zoom": 0.8
+  }
+}

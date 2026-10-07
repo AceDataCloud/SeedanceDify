@@ -1,0 +1,52 @@
+{
+  "tested_at": "2026-10-07T08:53:40.777541+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "transport": "official remote-debug; signature verification enabled",
+  "browser_test_run": true,
+  "unit_contract_tests": "27 passed, 1 warning in 0.58s",
+  "marketplace_toolkit_passed": true,
+  "package_sha256": "c94dfd7d281eb911f127fe232a9b812cefb6f436ddbc4e492e5cc20cf40b8537",
+  "exact_package_serverless_install_passed": true,
+  "marketplace_install_tested": false,
+  "cloud_tested": false,
+  "cases": [
+    {
+      "case": "Seedance Audit Batch",
+      "tool": "seedance_tasks_retrieve_batch",
+      "workflow_run_id": "5679b3a2-9dc9-4107-9fff-70d3b3faace5",
+      "workflow_status": "succeeded",
+      "service_status": "succeeded",
+      "task_id": "",
+      "trace_id": "",
+      "media_urls": [
+        "https://platform2.cdn.acedata.cloud/seedance/14bf1af9-847c-47eb-9c9d-545f5abca2aa.mp4"
+      ],
+      "error": null,
+      "new_submission": false,
+      "media_verification": [
+        {
+          "case": "Seedance Audit Batch",
+          "size": 831327,
+          "sha256": "32f5b903d6b9dd3eccb3f346f663106bbd5bedc74c20bca8900ec5210ade1c53",
+          "duration": "4.041667",
+          "streams": [
+            {
+              "codec_name": "h264",
+              "codec_type": "video",
+              "width": 864,
+              "height": 496
+            }
+          ],
+          "full_decode": true
+        }
+      ],
+      "result_fields": [
+        "items"
+      ],
+      "screenshot": "evidence/seedance-audit-batch.png",
+      "workflow": "evidence/seedance-audit-batch-workflow.json"
+    }
+  ],
+  "primary_blocked": false,
+  "scope_note": "Recorded cases only. Batch regressions reuse earlier paid successful tasks; those media generations are not billed or claimed as new. New paid calls have separate usage reconciliation. Optional untested models/actions are not claimed as passed; original failures and their corrections are preserved."
+}

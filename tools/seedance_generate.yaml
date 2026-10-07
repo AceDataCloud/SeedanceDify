@@ -72,15 +72,10 @@ parameters:
     zh_Hans: 多模态内容
   human_description:
     en_US: Set content for this operation. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable.
     zh_Hans: 视频生成输入列表。图生视频首帧、图生视频首尾帧和全模态参考是三种互斥场景：首帧/首尾帧使用 first_frame/last_frame；全模态参考使用
       reference_image/reference_video/reference_audio，不可混用。 数组或对象请使用 JSON 格式。
   llm_description: Set content for this operation. Enter a JSON array or object where
-    applicable. Enter a JSON array or object where applicable. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable.
+    applicable.
 - name: resolution
   type: select
   required: false
@@ -322,14 +317,9 @@ parameters:
     zh_Hans: 辅助工具
   human_description:
     en_US: Set tools for this operation. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable.
     zh_Hans: 可选工具配置。当前支持联网搜索工具 web_search。 数组或对象请使用 JSON 格式。
   llm_description: Set tools for this operation. Enter a JSON array or object where
-    applicable. Enter a JSON array or object where applicable. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable.
+    applicable.
 - name: priority
   type: number
   required: false
@@ -396,15 +386,10 @@ parameters:
     zh_Hans: 参考图片链接
   human_description:
     en_US: Set reference image urls for this operation. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable.
-    zh_Hans: 设置参考图片链接。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用
-      JSON 格式。 数组或对象请使用 JSON 格式。
+      where applicable.
+    zh_Hans: 设置参考图片链接。 数组或对象请使用 JSON 格式。
   llm_description: Set reference image urls for this operation. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable. Enter a JSON array or object where applicable.
-    Enter a JSON array or object where applicable.
+    or object where applicable.
 - name: reference_audio_urls
   type: string
   required: false
@@ -414,15 +399,10 @@ parameters:
     zh_Hans: 参考音频链接
   human_description:
     en_US: Set reference audio urls for this operation. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable.
-    zh_Hans: 设置参考音频链接。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用
-      JSON 格式。 数组或对象请使用 JSON 格式。
+      where applicable.
+    zh_Hans: 设置参考音频链接。 数组或对象请使用 JSON 格式。
   llm_description: Set reference audio urls for this operation. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable. Enter a JSON array or object where applicable.
-    Enter a JSON array or object where applicable.
+    or object where applicable.
 - name: reference_video_urls
   type: string
   required: false
@@ -432,15 +412,10 @@ parameters:
     zh_Hans: 参考视频链接
   human_description:
     en_US: Set reference video urls for this operation. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable.
-    zh_Hans: 设置参考视频链接。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用
-      JSON 格式。 数组或对象请使用 JSON 格式。
+      where applicable.
+    zh_Hans: 设置参考视频链接。 数组或对象请使用 JSON 格式。
   llm_description: Set reference video urls for this operation. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable. Enter a JSON array or object where applicable.
-    Enter a JSON array or object where applicable.
+    or object where applicable.
 output_schema:
   type: object
   properties:

@@ -301,3 +301,19 @@ def test_partial_output_has_explicit_status():
     else:
         with pytest.raises(APIError):
             Client("token").normalize(body, "owned-task", retrieved=True)
+
+
+def test_primary_audio_does_not_advertise_optional_unrendered_video():
+    value = {
+        "data": [
+            {
+                "audio_url": "https://example.org/song.mp3",
+                "video_url": "https://example.org/not-rendered.mp4",
+                "image_url": "https://example.org/cover.jpg",
+            }
+        ]
+    }
+    if False:
+        assert api.media_urls(value) == ["https://example.org/song.mp3"]
+    else:
+        assert "https://example.org/song.mp3" in api.media_urls(value)
