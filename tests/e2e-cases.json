@@ -16,12 +16,12 @@
     "operation": "generate",
     "parameters": {
       "prompt": "The coral cube gently rotates in place. Keep the plain cream background, static camera, no text.",
-      "image_url": "https://cdn.acedata2.cloud/nanobanana/123a3075b014cd7c7cde2449d92aca55c449a58ecdacaeb9f3a2800cbbba8ad7.jpg",
       "model": "doubao-seedance-2-0-mini-260615",
       "duration": 4,
       "resolution": "480p",
       "ratio": "16:9",
-      "generate_audio": false
+      "generate_audio": false,
+      "first_frame_url": "https://cdn.acedata2.cloud/nanobanana/123a3075b014cd7c7cde2449d92aca55c449a58ecdacaeb9f3a2800cbbba8ad7.jpg"
     }
   }
 ]

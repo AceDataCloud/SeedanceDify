@@ -11,3 +11,7 @@ Use `e2e-cases.json` as the tool inputs for an isolated Dify 1.17.1 workspace.
 6. Remove the test credential and stop the isolated test environment.
 
 These cases consume real API usage. They are never part of CI. Results do not assert Dify Cloud, browser interaction, or Marketplace publication.
+
+## Service convention alignment
+
+`e2e-alignment.json` records the subsequent read-only verification of restored plugin/tool IDs, service icons, bilingual metadata, `acedata_bearer_token` authorization and actual task workflows. All nine earlier paid input cases map to identical API request payloads after the refactor. Existing task IDs were retrieved again; no new generation was submitted. Image tasks now also return native Dify image files, and `success`, `trace_id`, `data` follow the earlier tool conventions.

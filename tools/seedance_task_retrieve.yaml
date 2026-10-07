@@ -1,0 +1,59 @@
+identity:
+  name: seedance_task_retrieve
+  author: acedatacloud
+  label:
+    en_US: Seedance Retrieve Task
+    zh_Hans: Seedance 查询任务
+description:
+  human:
+    en_US: Retrieve a task or wait up to 240 seconds for completion.
+    zh_Hans: 查询任务，或最多等待 240 秒至完成。
+  llm: Retrieve an existing task. Poll the same task ID if pending; never resubmit
+    generation to check progress.
+parameters:
+- name: task_id
+  label:
+    en_US: Task ID
+    zh_Hans: 任务 ID
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: The task ID returned by a generation or edit tool.
+    zh_Hans: 生成或编辑工具返回的任务 ID。
+  llm_description: The task ID returned by a generation or edit tool.
+- name: wait_seconds
+  label:
+    en_US: Wait up to seconds
+    zh_Hans: 最长等待秒数
+  type: number
+  required: false
+  form: form
+  human_description:
+    en_US: 0 returns current status; 1–240 polls until completion. Pending results
+      keep the same task ID. Do not resubmit generation.
+    zh_Hans: 0 表示仅查询一次；1–240 表示等待至完成或超时。未完成时继续查询同一任务，请勿重复提交生成。
+  llm_description: 0 returns current status; 1–240 polls until completion. Pending
+    results keep the same task ID. Do not resubmit generation.
+  default: 0
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    task_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    result:
+      type: object
+    success:
+      type: boolean
+    trace_id:
+      type: string
+    data: {}
+extra:
+  python:
+    source: tools/seedance_task_retrieve.py

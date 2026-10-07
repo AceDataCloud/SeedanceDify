@@ -7,7 +7,9 @@ import requests
 from dify_plugin.config.config import DifyPluginEnv
 from dify_plugin.core.plugin_registration import PluginRegistration
 
-from client import BASE, SERVICE, APIError, Client, https_urls
+from tools.acedata_client import BASE, SERVICE, https_urls
+from tools.acedata_client import AceDataSeedanceClient as Client
+from tools.acedata_client import AceDataSeedanceError as APIError
 
 
 def response(body, status=200):
@@ -21,7 +23,7 @@ def response(body, status=200):
 def test_plugin_loads_all_declared_tools():
     registration = PluginRegistration(DifyPluginEnv())
     assert registration.configuration.name
-    assert Path("_assets/icon.png").read_bytes().startswith(b"\x89PNG")
+    assert Path("_assets/" + registration.configuration.icon).is_file()
 
 
 def test_credential_validation_is_read_only(monkeypatch):
@@ -137,3 +139,51 @@ def test_service_specific_payload():
             "edit", {**p, "image_urls": "https://example.org/input.png"}
         )
         assert data.get("image_urls", data.get("image")) == ["https://example.org/input.png"]
+
+
+@pytest.mark.parametrize("complete", [False, True])
+def test_task_tool_uses_legacy_credentials_and_output_messages(monkeypatch, complete):
+    from dify_plugin.entities.tool import ToolRuntime
+
+    from tools.seedance_task_retrieve import SeedanceTaskRetrieveTool
+
+    key = {"image": "image_url", "video": "video_url", "audio": "audio_url"}[SERVICE["media"]]
+    url = "https://cdn.example.org/output"
+    body = {
+        "id": "existing-task",
+        "finished_at": 10 if complete else None,
+        "response": {
+            "success": True,
+            "state": "complete" if complete else "pending",
+            "trace_id": "test-trace",
+            "data": [{key: url}],
+        },
+    }
+    calls = []
+
+    def request(method, endpoint, **kwargs):
+        calls.append((method, endpoint, kwargs))
+        return response(body)
+
+    monkeypatch.setattr(requests, "request", request)
+    tool = SeedanceTaskRetrieveTool(
+        runtime=ToolRuntime(
+            credentials={"acedata_bearer_token": "owned-test-token"}, user_id=None, session_id=None
+        ),
+        session=None,
+    )
+    messages = list(tool._invoke({"task_id": "existing-task", "wait_seconds": 0}))
+    variables = {
+        m.message.variable_name: m.message.variable_value
+        for m in messages
+        if m.type.value == "variable"
+    }
+    assert len(calls) == 1
+    assert calls[0][2]["headers"]["Authorization"] == "Bearer owned-test-token"
+    assert calls[0][2]["json"] == {"action": "retrieve", "id": "existing-task"}
+    assert variables["success"] is complete
+    assert variables["status"] == ("succeeded" if complete else "pending")
+    assert variables["trace_id"] == "test-trace"
+    assert variables["data"] == [{key: url}]
+    media_type = "image" if SERVICE["media"] == "image" else "link"
+    assert len([m for m in messages if m.type.value == media_type]) == int(complete)

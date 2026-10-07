@@ -1,129 +1,163 @@
 identity:
-  name: seedance_generate
+  name: seedance_generate_video
   author: acedatacloud
   label:
-    en_US: Generate video
+    en_US: Seedance Generate Video
+    zh_Hans: Seedance 生成视频
 description:
   human:
-    en_US: Generate video through Seedance by Ace Data Cloud.
-  llm: Generate video through Seedance by Ace Data Cloud. Generation returns a task
-    ID; use Retrieve or wait for task for the final result.
+    en_US: Generate a video with Ace Data Cloud Seedance Videos API.
+    zh_Hans: 通过 Ace Data Cloud Seedance Videos API 生成视频。
+  llm: Generate a video from prompt (optionally with frame/reference images) via Ace
+    Data Cloud Seedance Videos API. Returns a task ID; use the task retrieval tool
+    to obtain completed media. Never repeat a pending submission.
 parameters:
 - name: prompt
   label:
     en_US: Prompt
+    zh_Hans: 提示词
   type: string
   required: true
   form: llm
   human_description:
-    en_US: Prompt
-  llm_description: Prompt
+    en_US: Text prompt used to generate the video.
+    zh_Hans: 描述希望生成或编辑的内容。
+  llm_description: Text prompt used to generate the video.
 - name: model
   label:
     en_US: Model
+    zh_Hans: 模型
   type: select
   required: false
   form: form
   human_description:
-    en_US: Model
-  llm_description: Model
+    en_US: Select the model. Available models, access and pricing are shown in the
+      Ace Data Cloud console.
+    zh_Hans: 选择要调用的模型。模型权限和价格以 Ace Data Cloud 控制台为准。
+  llm_description: Select the model. Available models, access and pricing are shown
+    in the Ace Data Cloud console.
   default: doubao-seedance-2-0-mini-260615
   options:
   - value: doubao-seedance-1-0-pro-fast-251015
     label:
       en_US: doubao-seedance-1-0-pro-fast-251015
+      zh_Hans: doubao-seedance-1-0-pro-fast-251015
   - value: doubao-seedance-1-5-pro-251215
     label:
       en_US: doubao-seedance-1-5-pro-251215
+      zh_Hans: doubao-seedance-1-5-pro-251215
   - value: doubao-seedance-2-0-mini-260615
     label:
       en_US: doubao-seedance-2-0-mini-260615
+      zh_Hans: doubao-seedance-2-0-mini-260615
   - value: doubao-seedance-2-0-fast-260128
     label:
       en_US: doubao-seedance-2-0-fast-260128
+      zh_Hans: doubao-seedance-2-0-fast-260128
   - value: doubao-seedance-2-0-260128
     label:
       en_US: doubao-seedance-2-0-260128
+      zh_Hans: doubao-seedance-2-0-260128
   - value: doubao-seedance-2-5-260628
     label:
       en_US: doubao-seedance-2-5-260628
-- name: image_url
+      zh_Hans: doubao-seedance-2-5-260628
+- name: first_frame_url
   label:
-    en_US: First-frame image URL
+    en_US: First Frame URL
+    zh_Hans: 首帧图片链接
   type: string
   required: false
   form: llm
   human_description:
     en_US: Optional public HTTPS image URL; omit for text-to-video.
+    zh_Hans: 可选的公开 HTTPS 首帧图片链接；留空时使用文生视频。
   llm_description: Optional public HTTPS image URL; omit for text-to-video.
 - name: resolution
   label:
     en_US: Resolution
+    zh_Hans: 分辨率
   type: select
   required: false
   form: form
   human_description:
-    en_US: Resolution
-  llm_description: Resolution
+    en_US: Optional output resolution (480p/720p/1080p).
+    zh_Hans: 输出分辨率；可用选项取决于所选模型。
+  llm_description: Optional output resolution (480p/720p/1080p).
   default: 480p
   options:
   - value: 480p
     label:
       en_US: 480p
+      zh_Hans: 480p
   - value: 720p
     label:
       en_US: 720p
+      zh_Hans: 720p
   - value: 1080p
     label:
       en_US: 1080p
+      zh_Hans: 1080p
 - name: ratio
   label:
-    en_US: Aspect ratio
+    en_US: Aspect Ratio
+    zh_Hans: 画面比例
   type: select
   required: false
   form: form
   human_description:
     en_US: Aspect ratio
+    zh_Hans: 生成视频的画面比例。
   llm_description: Aspect ratio
   default: '16:9'
   options:
   - value: '16:9'
     label:
       en_US: '16:9'
+      zh_Hans: '16:9'
   - value: '4:3'
     label:
       en_US: '4:3'
+      zh_Hans: '4:3'
   - value: '1:1'
     label:
       en_US: '1:1'
+      zh_Hans: '1:1'
   - value: '3:4'
     label:
       en_US: '3:4'
+      zh_Hans: '3:4'
   - value: '9:16'
     label:
       en_US: '9:16'
+      zh_Hans: '9:16'
   - value: '21:9'
     label:
       en_US: '21:9'
+      zh_Hans: '21:9'
 - name: duration
   label:
-    en_US: Duration in seconds
+    en_US: Duration (seconds)
+    zh_Hans: 时长（秒）
   type: number
   required: false
   form: form
   human_description:
     en_US: Duration in seconds
+    zh_Hans: 生成视频的秒数；范围取决于所选模型。
   llm_description: Duration in seconds
   default: 4
 - name: generate_audio
   label:
-    en_US: Generate audio
+    en_US: Generate Audio
+    zh_Hans: 生成音频
   type: boolean
   required: false
   form: form
   human_description:
-    en_US: Generate audio
-  llm_description: Generate audio
+    en_US: Include generated audio in the video.
+    zh_Hans: 同时生成视频音频。
+  llm_description: Include generated audio in the video.
   default: false
 output_schema:
   type: object
@@ -138,6 +172,11 @@ output_schema:
         type: string
     result:
       type: object
+    success:
+      type: boolean
+    trace_id:
+      type: string
+    data: {}
 extra:
   python:
-    source: tools/generate.py
+    source: tools/seedance_generate.py
