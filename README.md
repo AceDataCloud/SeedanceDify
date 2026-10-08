@@ -5,7 +5,7 @@ Use the Ace Data Cloud Seedance APIs in Dify workflows. Maintained by Ace Data C
 ## Setup
 
 1. Activate the service at [Ace Data Cloud](https://platform.acedata.cloud/console/applications), check [current pricing](https://platform.acedata.cloud/models), and create an API token with the required service access.
-2. Install from the official Dify Marketplace once the submission is approved and published. During review, use Dify's documented package/debug installation in a test workspace. A GitHub PR does not establish Marketplace availability or default installation.
+2. Install from [Dify Marketplace](https://marketplace.dify.ai/plugin/acedatacloud/seedance). This version is published and was installed through the official Marketplace flow in Dify CE 1.17.1 with signature verification enabled. Installation is optional; this does not mean Dify preinstalls the plugin.
 3. In Dify's **Plugins / Tools** page, authorize this provider with **Bearer Token** (`acedata_bearer_token`). Do not include credentials in prompts or exported workflows. Credential validation never generates media. Authorization performs a read-only task query.
 
 ## Tools
@@ -56,3 +56,9 @@ Source contracts, MCP mappings, brand provenance and offline cases are in `tests
 - Contact: dev@acedata.cloud
 - License: MIT
 - [Simplified Chinese](readme/README_zh_Hans.md)
+
+## Official Marketplace verification
+
+[Install from Dify Marketplace](https://marketplace.dify.ai/plugin/acedatacloud/seedance). Version 0.0.1 was downloaded and installed through the official Marketplace flow on October 8, 2026, with signature verification enabled and no remote-debug process. The installed plugin then completed the recorded real Dify workflow. [Verification data](tests/marketplace-acceptance.json) and [original Dify screenshot](tests/evidence/marketplace-20261008.png) document the exact scope. This proves optional Marketplace availability, not default installation or featured placement.
+
+The installed tool queried a previously generated, completed task and returned its final media. The generation itself was not repeated; earlier generation evidence remains separate.

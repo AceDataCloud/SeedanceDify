@@ -5,7 +5,7 @@
 ## 安装与授权
 
 1. 在 [Ace Data Cloud](https://platform.acedata.cloud/console/applications) 开通服务并创建 API Token；使用前核对[当前模型与价格](https://platform.acedata.cloud/models)。
-2. 官方审核并上架后，可从 Dify Marketplace 安装。审核期间可以在测试环境使用 Dify 官方的包安装或远程调试流程。PR 已提交不表示市场已发布，也不表示默认预装。
+2. 可从 [Dify 官方 Marketplace](https://marketplace.dify.ai/plugin/acedatacloud/seedance) 安装。0.0.1 已上架，并通过开启签名校验的 Dify CE 1.17.1 安装验证；这属于可选安装，不代表默认预装。
 3. 在 Dify 的插件或工具页填写 Bearer Token（`acedata_bearer_token`）。凭据检查不会生成内容。授权使用只读任务查询。
 
 ## 工具与工作流
@@ -39,3 +39,7 @@
 - 联系：dev@acedata.cloud
 
 需要 Python 3.12。运行 `python -m pytest tests -q`、`ruff check .`、`ruff format --check .` 和 `dify plugin package .`。真实 Dify 截图与结果、未覆盖项见 tests 目录；单元测试通过不等于所有模型真实调用通过，市场上架和安装另行验收。
+
+## 官方市场安装验收
+
+2026-10-08 已从[官方市场](https://marketplace.dify.ai/plugin/acedatacloud/seedance)安装签名包，并完成记录中的真实 Dify 工作流。未使用 remote-debug。[验收数据](../tests/marketplace-acceptance.json)与[原始截图](../tests/evidence/marketplace-20261008.png)记录了准确范围；此前主流程和高级功能证据继续保留。本次复用已有成功任务验证查询与媒体输出，没有重复生成。

@@ -1,0 +1,31 @@
+{
+  "repo": "SeedanceDify",
+  "marketplace_url": "https://marketplace.dify.ai/plugin/acedatacloud/seedance",
+  "identifier": "acedatacloud/seedance:0.0.1@597ae64fd5522f56f5a50b7fda6412ea9cbe034ed84c1b767b191fc3850daf05",
+  "installation_source": "marketplace",
+  "workflow_id": "a89cbe69-dd30-4dfc-9e48-5fe71589477f",
+  "workflow_status": "succeeded",
+  "service_status": "succeeded",
+  "case": "Seedance Marketplace Installed",
+  "media_urls": [
+    "https://platform2.cdn.acedata.cloud/seedance/14bf1af9-847c-47eb-9c9d-545f5abca2aa.mp4"
+  ],
+  "outputs": {
+    "status": "succeeded",
+    "success": true,
+    "task_id": "",
+    "trace_id": ""
+  },
+  "icon_matches_source": true,
+  "paid_generation_reused": true,
+  "prior_media_decode_evidence": true,
+  "media_readback_status": "completed existing task output; generation not repeated",
+  "tested_at": "2026-10-08T01:26:57.567309+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "signature_verification_enabled": true,
+  "remote_debug_used": false,
+  "marketplace_install_tested": true,
+  "cloud_tested": false,
+  "screenshot": "evidence/marketplace-20261008.png",
+  "workflow": "evidence/marketplace-20261008-workflow.json"
+}
