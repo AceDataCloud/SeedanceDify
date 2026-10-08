@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-08T17:15:13.782Z",
+  "source_url": "https://platform.acedata.cloud/console/applications",
+  "auth": "Existing authorized account, own identity",
+  "privacy": "Balance, application ID and complete/partial token are opaque-masked before screenshot capture. Dialog crops omit unrelated UI.",
+  "edits": "Crop + numbered callouts on live screenshot only; no UI data or success state fabricated.",
+  "capture_actions": "Read application page, open Manage Keys, open Create, fill example name, cancel; no credential created and no billable API call.",
+  "instructions": {
+    "1": "Copy the selected existing key. The screenshot redacts it. Paste only token in Dify, not the Bearer label.",
+    "2": "Manage Keys, then Create; use own key name and appropriate restrictions. Return to the list/application page to copy."
+  },
+  "files": [
+    {
+      "file": "create-api-key-en.png",
+      "sha256": "977c06780b36ca33f2fb3ba546e2594efe5895400e4cb58d842eb564c3bb09da",
+      "bytes": 25251
+    },
+    {
+      "file": "get-api-key-en.png",
+      "sha256": "b63787f2bd15af82fef9ab61c99e11c454355ac86e91f7f94559386b795069b7",
+      "bytes": 33708
+    }
+  ],
+  "published_screenshot_language": "English only in every locale, per explicit user instruction"
+}
