@@ -6,12 +6,7 @@ app:
   mode: workflow
   name: Seedance Step-by-step Tutorial
   use_icon_as_answer_icon: false
-dependencies:
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: acedatacloud/seedance:0.0.1@597ae64fd5522f56f5a50b7fda6412ea9cbe034ed84c1b767b191fc3850daf05
-    version: null
+dependencies: []
 kind: app
 version: 0.7.0
 workflow:
@@ -86,7 +81,6 @@ workflow:
       zIndex: 0
     - data:
         desc: ''
-        plugin_unique_identifier: acedatacloud/seedance:0.0.1@597ae64fd5522f56f5a50b7fda6412ea9cbe034ed84c1b767b191fc3850daf05
         provider_id: acedatacloud/seedance/seedance
         provider_name: acedatacloud/seedance/seedance
         provider_type: builtin
@@ -137,7 +131,6 @@ workflow:
       zIndex: 0
     - data:
         desc: ''
-        plugin_unique_identifier: acedatacloud/seedance:0.0.1@597ae64fd5522f56f5a50b7fda6412ea9cbe034ed84c1b767b191fc3850daf05
         provider_id: acedatacloud/seedance/seedance
         provider_name: acedatacloud/seedance/seedance
         provider_type: builtin
