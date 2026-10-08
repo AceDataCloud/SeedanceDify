@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: acedatacloud
 name: seedance
@@ -23,7 +23,7 @@ plugins:
   tools:
   - provider/seedance.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
   minimum_dify_version: 1.17.1
   arch:
   - amd64
