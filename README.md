@@ -2,7 +2,7 @@
 
 Generate a short video and retrieve its completed file. This guide takes you from your first API key to the result in a Dify Workflow. Screenshots use Dify CE 1.17.1 in English; later versions may move the same controls.
 
-[Read in Simplified Chinese](https://github.com/AceDataCloud/SeedanceDify/blob/main/readme/README_zh_Hans.md) · [API and pricing](https://platform.acedata.cloud/models)
+[Read in Simplified Chinese](https://github.com/AceDataCloud/SeedanceDify/blob/main/readme/README_zh_Hans.md) · [API and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_readme_pricing)
 
 ## 1. Install the correct plugin
 
@@ -14,7 +14,9 @@ If your Dify server cannot open Marketplace, ask its administrator to enable out
 
 ## 2. Get an API key with the correct access
 
-1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications).
+New account? Register and sign in first. If the Applications page has no General application yet, choose **Initialize General Application**, then continue with the key steps below.
+
+1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_readme_api_key).
 2. Open **General application**. Its API key can access multiple services your account is entitled to use. A service-specific key is limited to that service. For this tutorial, check **Seedance** access and current pricing/balance before generating.
 3. To reuse the selected key, click the copy icon marked **1** below. To create a separate Dify key, click **Manage Keys** marked **2**, then **Create**.
 
