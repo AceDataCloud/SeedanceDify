@@ -1,5 +1,9 @@
 # Seedance Dify 插件：手把手教程
 
+**Seedance by Ace Data Cloud** 是可独立安装的 Ace 服务集成，不代表 Seedance 官方账号或背书。插件免费，实际请求按 Ace 账号权限和当前价格计费。
+
+**发布状态：**明确的提供方标题、市场 `videos` 分类和界面内 Applications 获取 Key 链接已为 0.0.4 准备，仍待源码审核及市场发布。当前公开版本仍为0.0.3。保留的截图是真实历史界面，不是本次元数据更新的新截图。
+
 生成一段短视频并取得完成后的文件。从获取 Key 开始，按下面步骤在 Dify 中看到第一次结果。截图来自 Dify CE 1.17.1 英文界面；新版本可能调整菜单位置。
 
 [English](https://github.com/AceDataCloud/SeedanceDify/blob/main/README.md) · [当前模型和价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_readme_pricing)
