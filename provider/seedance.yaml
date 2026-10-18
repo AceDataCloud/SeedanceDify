@@ -2,10 +2,10 @@ identity:
   author: acedatacloud
   name: seedance
   label:
-    en_US: Seedance
-    ja_JP: Seedance
-    zh_Hans: Seedance
-    pt_BR: Seedance
+    en_US: Seedance by Ace Data Cloud
+    ja_JP: Seedance by Ace Data Cloud
+    zh_Hans: Seedance by Ace Data Cloud
+    pt_BR: Seedance by Ace Data Cloud
   description:
     en_US: Generate videos via Ace Data Cloud Seedance Videos API.
     ja_JP: Ace Data Cloud Seedance Videos API を使って動画生成を行います。
@@ -28,7 +28,7 @@ credentials_for_provider:
     help:
       en_US: Acquire a token with access to this service from the Ace Data Cloud console.
       zh_Hans: 从 Ace Data Cloud 控制台获取具有此服务权限的 Token。
-    url: https://platform.acedata.cloud/console/credentials
+    url: https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_provider_api_key
 tools:
 - tools/seedance_generate.yaml
 - tools/seedance_task_retrieve.yaml

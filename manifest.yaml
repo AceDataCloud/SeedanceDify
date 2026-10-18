@@ -1,12 +1,12 @@
-version: 0.0.3
+version: 0.0.4
 type: plugin
 author: acedatacloud
 name: seedance
 label:
-  en_US: Seedance
-  ja_JP: Seedance
-  zh_Hans: Seedance
-  pt_BR: Seedance
+  en_US: Seedance by Ace Data Cloud
+  ja_JP: Seedance by Ace Data Cloud
+  zh_Hans: Seedance by Ace Data Cloud
+  pt_BR: Seedance by Ace Data Cloud
 description:
   en_US: Generate videos via Ace Data Cloud Seedance Videos API.
   ja_JP: Ace Data Cloud Seedance Videos API を使って動画生成を行います。
@@ -14,6 +14,8 @@ description:
   pt_BR: Gere vídeos via Ace Data Cloud Seedance Videos API.
 icon: icon.png
 icon_dark: icon.png
+tags:
+  - videos
 resource:
   memory: 268435456
   permission:
