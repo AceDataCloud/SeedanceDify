@@ -28,7 +28,7 @@ credentials_for_provider:
     help:
       en_US: Acquire a token with access to this service from the Ace Data Cloud console.
       zh_Hans: 从 Ace Data Cloud 控制台获取具有此服务权限的 Token。
-    url: https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_provider_api_key
+    url: https://platform.acedata.cloud/console/applications?utm_source=dify&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_provider_api_key
 tools:
 - tools/seedance_generate.yaml
 - tools/seedance_task_retrieve.yaml
