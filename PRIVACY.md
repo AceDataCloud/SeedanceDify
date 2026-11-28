@@ -1,4 +1,4 @@
-# Privacy policy — Seedance by Ace Data Cloud
+# Privacy policy — Seedance
 
 Effective date: 2026-10-07. Maintainer/contact: Ace Data Cloud, dev@acedata.cloud.
 
