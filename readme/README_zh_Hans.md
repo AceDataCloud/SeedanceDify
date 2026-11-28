@@ -18,8 +18,6 @@
 
 ## 2. 获取能调用该服务的 API Key
 
-首次使用请先注册并登录；如果应用页还没有通用应用，点击 **初始化通用应用（Initialize General Application）**，再按下面步骤管理密钥。
-
 1. 登录 [Ace Data Cloud → 我的应用](https://platform.acedata.cloud/console/applications?utm_source=dify&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancedify_readme_api_key)。
 2. 找到 **通用应用**。通用应用 Key 可用于账号有权使用的多个服务；服务专用 Key 仅限对应服务。本教程需要核对 **Seedance** 的调用权限、余额和当前价格。
 3. 要用已有 Key，点击图中 **①复制**。要给 Dify 单独创建一个 Key，点击 **②管理密钥**，再点右上角 **创建**。
