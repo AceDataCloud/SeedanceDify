@@ -1,6 +1,6 @@
 # Seedance Dify 插件：手把手教程
 
-**Seedance by Ace Data Cloud** 是可独立安装的 Ace 服务集成，不代表 Seedance 官方账号或背书。插件免费，实际请求按 Ace 账号权限和当前价格计费。
+**Seedance** 是可独立安装的 Ace 服务集成，不代表 Seedance 官方账号或背书。插件免费，实际请求按 Ace 账号权限和当前价格计费。
 
 **0.0.4 版本说明：**安装此版本后可看到明确的提供方标题、市场分类和界面内 Applications 获取 Key 链接。请核对工作区版本及[市场入口](https://marketplace.dify.ai/plugin/acedatacloud/seedance)；市场或已安装旧包可能仍显示此前标题。保留的截图是真实历史界面，不是本次元数据更新的新截图。
 
